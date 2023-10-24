@@ -42,7 +42,7 @@ class SimplifiedBaggingRegressor:
         '''
         Get average prediction for every object from passed dataset
         '''
-        return [model.predict(data) for model in self.models_list]
+        return [np.mean([model.predict(data_el.reshape(1, -1)) for model in self.models_list]) for data_el in data]
     
     def _get_oob_predictions_from_every_model(self):
         '''

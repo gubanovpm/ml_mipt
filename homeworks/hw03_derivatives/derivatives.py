@@ -87,7 +87,7 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        return 2 * X.T.dot(X.dot(w) - Y) / X.shape[0] / np.prod(Y.shape[1:])
+        return 2 * X.T.dot(X.dot(w) - Y) / np.prod(Y.shape[:])
 
     @staticmethod
     def mae_derivative(X, Y, w):

@@ -44,7 +44,7 @@ class SimplifiedBoostingRegressor:
             predictions = self.predict(data)
             self.loss_log.append(self.loss(targets, predictions))
             gradients = self.loss_gradients(targets, predictions)
-            new_targets = targets - predictions#self.lr * gradients
+            new_targets = targets - predictions
         if verbose:
             print('Finished! Loss=', self.loss_log[-1])
         return self
@@ -52,5 +52,5 @@ class SimplifiedBoostingRegressor:
     def predict(self, data):
         predictions = np.zeros(len(data))
         for model in self.models_list:
-            predictions += model.predict(data) * self.lr
+            predictions += self.lr * model.predict(data)
         return predictions
